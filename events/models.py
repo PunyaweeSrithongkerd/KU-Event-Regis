@@ -14,3 +14,13 @@ class Date(models.Model):
     date = models.DateTimeField('date published')
     def __str__(self):
         return self.date
+
+class Duration(models.Model):
+    duration = models.ForeignKey(Event, on_delete=models.CASCADE)
+    def __str__(self):
+        return self.duration
+
+class Description(models.Model):
+    description = models.ForeignKey(Event, on_delete=models.CASCADE)
+    def __str__(self):
+        return self.description
