@@ -1,0 +1,16 @@
+<html>
+<body>
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'events/style.css' %}">
+
+<h1>"{{ event }}" Details<h1>
+
+<h2>Event Date: {{event.event_date}}</h2>
+
+<h2>Start time: {{event.start_time}}</h2>
+<h2>End time: {{event.end_time}}</h2>
+
+<a href="/events/registered/">Register!</a>
+
+</html>
+</body>
