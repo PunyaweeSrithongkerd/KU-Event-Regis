@@ -1,42 +1,44 @@
-<html>
-<body>
-{% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'events/style.css' %}">
-
-<h1>Soon Interesting Events!</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Ku-Event-Regis</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'events/style.css' %}">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap-theme.min.css">
+</head>
+<body class="Background">
+<div class="container-fluid">
+<h1 class="Header">Soon Interesting Events!</h1>
 
 <table>
 
 	<tr>
-		<th>Event</th>
-		<th>Date</th>
-		<th>Register</th>
-
-		
-		
-	
-	
-
-		
+		<th class="Detail_font">Event</th>
+		<th class="Detail_font">Date</th>
+		<th class="Detail_font">Register</th>
 
 {% if events_list %}
     <ul>
     {% for event in events_list %}
 		<tr>
-        <td>{{ event.name }}</li></td>
-		<td>{{ event.event_date }}</td>
-		<td><a href="/events/{{ event.id }}/">Register</a></td>
+        <td class="Detail_font">{{ event.name }}</li></td>
+		<td class="Detail_font">{{ event.event_date }}</td>
+		<td class="Detail_font"><a href="/events/{{ event.id }}/">Register</a></td>
 		</tr>
 		
     {% endfor %}
     </ul>
 {% else %}
-    <p>No events are available.</p>
+    <p class="Header">No events are available.</p>
 {% endif %}
 
 
 </table>
 
-<a href="/events/registered/ ">Your Registered Event</a>
+<a class="btn btn-primary" href="/events/registered/ ">Your Registered Event</a>
+</div>
 </body>
 </html>
