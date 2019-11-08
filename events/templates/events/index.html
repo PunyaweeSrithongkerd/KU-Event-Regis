@@ -11,8 +11,17 @@
 </head>
 <body class="Background">
 <div class="container-fluid">
-<h1 class="Header">Soon Interesting Events!</h1>
 
+{% if user.is_authenticated %}
+	Welcome back, {{ user.username }} 
+	
+	<a href="{% url 'logout' %}"> Logout </a>
+	
+{% else %}
+	<p><a href="{% url 'login' %}?next={{request.path}}"> Login </a> to register the events!.</p>
+{% endif %}
+
+<h1>Soon Interesting Events!</h1>
 <table>
 
 	<tr>
