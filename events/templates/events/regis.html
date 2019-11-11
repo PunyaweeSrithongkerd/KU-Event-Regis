@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Ku-Event-Regis</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'events/style.css' %}">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap-theme.min.css">
+    </head>
+<body class="Background">
+
+
+<h1 class="Header">Registered Events!</h1>
+
+<table>
+
+	<tr>
+		<th class="Detail_font">Event</th>
+		<th class="Detail_font">Date</th>
+		<th class="Detail_font">Register</th>
+	</tr>
+		
+		
+	
+	
+
+		
+<!--
+{% if events_list %}
+    <ul>
+    {% for event in events_list %}
+		<tr>
+        <td>{{ event.name }}</li></td>
+		<td>{{ event.event_date }}</td>
+		<td><a href="/events/{{ event.id }}/">Register</a></td>
+		</tr>
+		
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No events are available.</p>
+{% endif %}
+-->
+</table>
+<a class="btn btn-primary" href="/events/ ">Back to home</a>
+</body>
+</html>

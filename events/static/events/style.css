@@ -1,0 +1,25 @@
+li a {
+    color: blue;
+}
+.Background {
+    background-image: url("images/PrettyGreenBackgrounds.jpg") ;
+    background-size: no-repeat 100%;
+}
+.Header {
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: normal;
+    color: black;
+}
+table, th, td {
+    border-collapse: collapse;
+    border: 1px solid black;
+    padding-left:  4px;
+    padding-right: 4px;
+}
+
+.Detail_font{
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: normal;
+    font-size: 24 px;
+    color: black;
+}
