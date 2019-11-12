@@ -26,4 +26,23 @@ class TestModelEvent(TestCase):
         name_return = event._str_()
         self.assertEquals(name_return,'Jim brucker')
     
+    def test_pub_date_label(self):
+        event = Event.objects.get(id=1)
+        field_label = event._meta.get_field('date published').verbose_name
+        self.assertEquals(field_label, 'date published')
+    
+    def test_event_date_label(self):
+        event = Event.objects.get(id=1)
+        field_label = event._meta.get_field('event date').verbose_name
+        self.assertEquals(field_label, 'event date')
+    
+    def test_start_time_label(self):
+        event = Event.objects.get(id=1)
+        field_label = event._meta.get_field('start time').verbose_name
+        self.assertEquals(field_label, 'start time')
+    
+    def test_end_time_label(self):
+        event = Event.objects.get(id=1)
+        field_label = event._meta.get_field('end time').verbose_name
+        self.assertEquals(field_label, 'end time')
      

@@ -10,6 +10,8 @@ class TestIndexView(TestCase):
     def setUp(self):
         print("setUp: Run once for every test method to setup clean data.")
         pass
-   
+    
+     
+        
 
     
