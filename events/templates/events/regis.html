@@ -19,30 +19,19 @@
 	<tr>
 		<th class="Detail_font">Event</th>
 		<th class="Detail_font">Date</th>
-		<th class="Detail_font">Register</th>
+		<th class="Detail_font">Time</th>
 	</tr>
-		
+	{% for event in user.event_set.all %}
+	<tr>
+		<td class="Detail_font">{{event.name}}</td>
+		<td class="Detail_font">{{event.event_date}}</td>
+		<td class="Detail_font">{{event.start_time}} to {{event.end_time}}</td>
+	</tr>
+	{% endfor %}	
 		
 	
 	
 
-		
-<!--
-{% if events_list %}
-    <ul>
-    {% for event in events_list %}
-		<tr>
-        <td>{{ event.name }}</li></td>
-		<td>{{ event.event_date }}</td>
-		<td><a href="/events/{{ event.id }}/">Register</a></td>
-		</tr>
-		
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No events are available.</p>
-{% endif %}
--->
 </table>
 <a class="btn btn-primary" href="/events/ ">Back to home</a>
 </body>
