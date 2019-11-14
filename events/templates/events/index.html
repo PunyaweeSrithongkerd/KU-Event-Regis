@@ -24,30 +24,28 @@
 <h1 class="Header">Soon Interesting Events!</h1>
 <table class="table">
 <thead class="thead-dark">	
-  <tr>
+	<tr>
 		<th class="Detail_font">Event</th>
 		<th class="Detail_font">Date</th>
-    <th class="Detail_font">Register</th>
-  </tr>
+		<th class="Detail_font">Time</th>
+		<th class="Detail_font"></th>
+	</tr>
 </thead>
-<tbody>
-{% if events_list %}
-    <ul>
-    {% for event in events_list %}
-		<tr>
-      <td class="Detail_font">{{ event.name }}</li></td>
-		  <td class="Detail_font">{{ event.event_date }}</td>
-		  <td class="Detail_font"><a href="/events/{{ event.id }}/">Register</a></td>
-		</tr>
+	{% if events_list %}
+		<ul>
+			{% for event in events_list %}
+				<tr>
+					<td class="Detail_font">{{ event.name }}</td>
+					<td class="Detail_font">{{ event.event_date }}</td>
+					<td class="Detail_font">{{ event.start_time }} to {{ event.end_time }}</td>
+					<td class="Detail_font"><a href="/events/{{ event.id }}/">Details</a></td>
+				</tr>
 		
-    {% endfor %}
-    </ul>
-</tbody>
-{% else %}
-    <p class="Header">No events are available.</p>
-{% endif %}
-
-
+			{% endfor %}
+		</ul>
+	{% else %}
+		<p class="Header">No events are available.</p>
+	{% endif %}
 </table>
 
 <a class="btn btn-primary" href="/events/registered/ ">Your Registered Event</a>
