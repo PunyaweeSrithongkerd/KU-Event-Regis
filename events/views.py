@@ -36,3 +36,15 @@ def regis(request, pk):
     regis_event.save()
 
     return redirect(reverse("events:register"))
+
+def unregis(request, pk):
+    userID = request.POST.get('UserID',False)
+    user = User.objects.get(id=userID)
+
+    regis_event = Event.objects.get(pk=pk)
+    
+    regis_event.user.remove(user)
+    regis_event.save()
+
+    return redirect(reverse("events:register"))
+    
