@@ -21,12 +21,14 @@
 		<th class="Detail_font">Date</th>
 		<th class="Detail_font">Time</th>
 		<th></th>
+		<th></th>
 	</tr>
 	{% for event in user.event_set.all %}
 	<tr>
 		<td class="Detail_font">{{event.name}}</td>
 		<td class="Detail_font">{{event.event_date}}</td>
 		<td class="Detail_font">{{event.start_time}} to {{event.end_time}}</td>
+		<td class="Detail_font"><a href="/events/{{ event.id }}/">Details</a></td>
 		<form action="{% url 'events:unregis' event.id %}" method="post">
 			{% csrf_token %}
 				<td><button type='submit' name='UserID' value={{user.id}}>Unregister</button></td>
