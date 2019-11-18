@@ -6,6 +6,7 @@ from django.utils import timezone
 
 from .models import Event
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 class IndexView(generic.ListView):
     model = Event
@@ -26,13 +27,30 @@ class RegisterView(generic.ListView):
     model = Event
     template_name = 'events/regis.html'
 
+@login_required(login_url='/accounts/login/') 
 def regis(request, pk):
     userID = request.POST.get('UserID',False)
-    user = User.objects.get(id=userID)
-
     regis_event = Event.objects.get(pk=pk)
+    try:
+        user = User.objects.get(id=userID)
+    except (KeyError, User.DoesNotExist):
+        return redirect(reverse("events:details", args=(regis_event.id,)))
+    else:
+        
 
-    regis_event.user.add(user)
+        regis_event.user.add(user)
+        regis_event.save()
+
+    return redirect(reverse("events:register"))
+
+def unregis(request, pk):
+    userID = request.POST.get('UserID',False)
+
+    user = User.objects.get(id=userID)
+    regis_event = Event.objects.get(pk=pk)
+    
+    regis_event.user.remove(user)
     regis_event.save()
 
     return redirect(reverse("events:register"))
+    
