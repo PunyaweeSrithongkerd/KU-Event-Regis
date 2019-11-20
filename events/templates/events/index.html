@@ -8,7 +8,6 @@
   <link rel="stylesheet" type="text/css" href="{% static 'events/style.css' %}">
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap-theme.min.css">
-  
 </head>
 <body class="Background">
 <div class="container-fluid">
@@ -29,8 +28,7 @@
 		<th class="Detail_font">Event</th>
 		<th class="Detail_font">Date</th>
 		<th class="Detail_font">Time</th>
-		<th class="Detail_font">Details</th>
-		<th class="Detail_font">Register</th>
+		<th class="Detail_font"></th>
 	</tr>
 	{% if events_list %}
 		<ul>
@@ -40,16 +38,9 @@
 					<td class="Detail_font">{{ event.event_date }}</td>
 					<td class="Detail_font">{{ event.start_time }} to {{ event.end_time }}</td>
 					<td class="Detail_font"><a href="/events/{{ event.id }}/">Details</a></td>
-					{% if user in event.user.all %}
-					{% load static %}
-					<td height=40 center align="center"><img width=35 height=35 src="{% static 'events/images/check.png' %}" alt="check"></td>
-					{% else %}
-						<td height=40 class="Detail_font"></td>
-					{% endif %}
 				</tr>
 		
 			{% endfor %}
-			
 		</ul>
 	{% else %}
 		<p class="Header">No events are available.</p>
