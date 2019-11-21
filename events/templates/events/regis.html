@@ -7,15 +7,13 @@
         {% load static %}
         <link rel="stylesheet" type="text/css" href="{% static 'events/style.css' %}">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="https://use.typekit.net/aal8ufp.css">
     </head>
 <body class="Background">
-
-
 <h1 class="Header">Registered Events!</h1>
 
-<table>
-
+<table class="table">
+	<thead class="thead-dark">	
 	<tr>
 		<th class="Detail_font">Event</th>
 		<th class="Detail_font">Date</th>
@@ -23,6 +21,7 @@
 		<th></th>
 		<th></th>
 	</tr>
+	</thead>
 	{% for event in user.event_set.all %}
 	<tr>
 		<td class="Detail_font">{{event.name}}</td>
@@ -35,6 +34,7 @@
 
 		</form>
 	</tr>
+	
 	{% endfor %}	
 		
 	
