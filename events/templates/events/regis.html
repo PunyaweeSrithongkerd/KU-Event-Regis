@@ -5,42 +5,38 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         {% load static %}
-        <link rel="stylesheet" type="text/css" href="{% static 'events/style.css' %}">
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap-theme.min.css">
+			<link rel="stylesheet" type="text/css" href="{% static 'events/style.css' %}">
+			<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+			<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap-theme.min.css">
     </head>
-<body class="Background">
+	
+	<body class="Background">
+		<h1 class="Header">Registered Events!</h1>
 
+		<table>
 
-<h1 class="Header">Registered Events!</h1>
+			<tr>
+				<th class="Detail_font">Event</th>
+				<th class="Detail_font">Date</th>
+				<th class="Detail_font">Time</th>
+				<th></th>
+				<th></th>
+			</tr>
+			{% for event in user.event_set.all %}
+				<tr>
+					<td class="Detail_font">{{event.name}}</td>
+					<td class="Detail_font">{{event.event_date}}</td>
+					<td class="Detail_font">{{event.start_time}} to {{event.end_time}}</td>
+					<td class="Detail_font"><a href="/events/{{ event.id }}/">Details</a></td>
+					<form action="{% url 'events:unregis' event.id %}" method="post">
+						{% csrf_token %}
+							<td><button type='submit' name='UserID' value={{user.id}}>Unregister</button></td>
 
-<table>
-
-	<tr>
-		<th class="Detail_font">Event</th>
-		<th class="Detail_font">Date</th>
-		<th class="Detail_font">Time</th>
-		<th></th>
-		<th></th>
-	</tr>
-	{% for event in user.event_set.all %}
-	<tr>
-		<td class="Detail_font">{{event.name}}</td>
-		<td class="Detail_font">{{event.event_date}}</td>
-		<td class="Detail_font">{{event.start_time}} to {{event.end_time}}</td>
-		<td class="Detail_font"><a href="/events/{{ event.id }}/">Details</a></td>
-		<form action="{% url 'events:unregis' event.id %}" method="post">
-			{% csrf_token %}
-				<td><button type='submit' name='UserID' value={{user.id}}>Unregister</button></td>
-
-		</form>
-	</tr>
-	{% endfor %}	
+					</form>
+				</tr>
+			{% endfor %}	
 		
-	
-	
-
-</table>
-<a class="btn btn-primary" href="/events/ ">Back to home</a>
-</body>
+		</table>
+		<a class="btn btn-primary" href="/events/ ">Back to home</a>
+	</body>
 </html>
