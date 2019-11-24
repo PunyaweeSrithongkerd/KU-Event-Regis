@@ -23,7 +23,6 @@
 {# If you have written a password_reset template, then #}
 <p>
 <a href="{% url 'password_reset' %}">Forgot password?</a>
-<a href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}">Login with Facebook</a>
 <a href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.path }}">Login with Google</a>
 </p>
 </div>
