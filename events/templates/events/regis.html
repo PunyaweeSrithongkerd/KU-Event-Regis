@@ -24,6 +24,7 @@
 			<th></th>
 		</tr>
 		{% for event in user.event_set.all %}
+			{% if event.is_future %}
 			<tr>
 				<td class="Detail_font">{{event.name}}</td>
 				<td class="Detail_font">{{event.event_date}}</td>
@@ -35,7 +36,8 @@
 
 				</form>
 			</tr>
-		{% endfor %}	
+			{% endif %}
+		{% endfor %}
 	
 	{% else %}
 		<h3 class="Detail_font">You have no registered event!<h3>
