@@ -8,6 +8,7 @@
   <link rel="stylesheet" type="text/css" href="{% static 'events/style.css' %}">
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="https://use.typekit.net/aal8ufp.css">
   
 </head>
 <body class="Background">
@@ -22,8 +23,10 @@
 	<p><a href="{% url 'login' %}?next={{request.path}}"> Login </a> to register the events!.</p>
 {% endif %}
 
-<h1>Soon Interesting Events!</h1>
-<table>
+
+<h1 class="Header">Soon Interesting Events!</h1>
+<table class="table">
+<thead class="thead-dark">	
 	<tr>
 		<th class="Detail_font">Event</th>
 		<th class="Detail_font">Date</th>
@@ -31,6 +34,7 @@
 		<th class="Detail_font">Details</th>
 		<th class="Detail_font">Register</th>
 	</tr>
+</thead>
 	{% if events_list %}
 		<ul>
 			{% for event in events_list %}
@@ -53,9 +57,6 @@
 	{% else %}
 		<p class="Header">No events are available.</p>
 	{% endif %}
-	
-	
-
 
 </table>
 
@@ -81,7 +82,6 @@
 	{% else %}
 		<h3 class="Detail_font">You have no registered event!<h3>
 	{% endif %}
-	
 
 </table>
 
