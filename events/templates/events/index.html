@@ -23,6 +23,7 @@
 	<p><a href="{% url 'login' %}?next={{request.path}}"> Login </a> to register the events!.</p>
 {% endif %}
 
+
 <h1 class="Header">Soon Interesting Events!</h1>
 <table class="table">
 <thead class="thead-dark">	
@@ -56,6 +57,32 @@
 	{% else %}
 		<p class="Header">No events are available.</p>
 	{% endif %}
+
+</table>
+
+<h2>Reminder</h2>
+
+<table>
+	{% if user.event_set.all %}
+		<tr>
+			<th class="Detail_font">Event</th>
+			<th></th>
+			<th></th>
+		</tr>
+		{% for event in user.event_set.all %}
+			{% if event.is_soon_event %}
+			<tr>
+				<td class="Detail_font">{{event.name}}</td>
+				<td class="Detail_font"><a href="/events/{{ event.id }}/">Details</a></td>
+				<th>In {{event.how_long}} Day(s)</th>
+			</tr>
+			{% endif %}
+		{% endfor %}	
+	
+	{% else %}
+		<h3 class="Detail_font">You have no registered event!<h3>
+	{% endif %}
+
 </table>
 
 <a class="btn btn-primary" href="/events/registered/ ">Your Registered Event</a>
