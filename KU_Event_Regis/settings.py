@@ -48,7 +48,6 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
     # Google's Oauth Backend
     'social_core.backends.google.GoogleOAuth2',
-    'social_core.backends.facebook.FacebookOAuth2',  
  )
 
 MIDDLEWARE = [
@@ -76,6 +75,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -134,8 +134,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # Setting for Social Auth
-LOGIN_URL = '/login/'
-LOGIN_REDIRECT_URL = '/'
 SOCIAL_AUTH_STRATEGY = 'social_django.strategy.DjangoStrategy'
 SOCIAL_AUTH_STORAGE = 'social_django.models.DjangoStorage'
 SOCIAL_AUTH_PIPELINE = (
