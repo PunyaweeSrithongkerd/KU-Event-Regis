@@ -29,3 +29,25 @@ An application that has a list of the upcoming events at Kasetsart University to
 [Code Reviwe Checklist](https://docs.google.com/document/d/1pRlqTeCQEq9T0g3NPf8yt26aUKCSKC3rqEyI3L4xy_I/edit?usp=sharing "Code Reviwe Checklist")
 
 [Project Propasal](https://docs.google.com/document/d/19xCopZf3TQyQaAabWN5D3fu3sOZGI43x2DwZauKSLwo/edit?usp=sharing "Project Propasal")
+
+### Setup
+
+1. Clone this Project to your own directory then open your clone directory and install the required packages by using the following command
+
+`pip install -r requirements.txt`
+
+2. Then create .env file and add `DEBUG  = TRUE` in .env file
+
+3. Then run this command
+
+`py manage.py migrate`
+
+### How to run
+
+run this command
+
+`py manage.py runserver`
+
+To enter site
+
+`http://127.0.0.1:8000/events/`
