@@ -1,8 +1,9 @@
 from django.http import HttpResponseRedirect
-from django.shortcuts import get_object_or_404, render, redirect
+from django.shortcuts import get_object_or_404, render, redirect, render_to_response
 from django.urls import reverse
 from django.views import generic
 from django.utils import timezone
+from django.template.response import TemplateResponse
 
 from .models import Event
 from django.contrib.auth.models import User
@@ -27,6 +28,7 @@ class RegisterView(generic.ListView):
     model = Event
     template_name = 'events/regis.html'
 
+
 @login_required(login_url='/accounts/login/') 
 def regis(request, pk):
     userID = request.POST.get('UserID',False)
@@ -36,8 +38,6 @@ def regis(request, pk):
     except (KeyError, User.DoesNotExist):
         return redirect(reverse("events:details", args=(regis_event.id,)))
     else:
-        
-
         regis_event.user.add(user)
         regis_event.save()
 
@@ -53,4 +53,3 @@ def unregis(request, pk):
     regis_event.save()
 
     return redirect(reverse("events:register"))
-
