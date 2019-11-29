@@ -53,4 +53,3 @@ def unregis(request, pk):
     regis_event.save()
 
     return redirect(reverse("events:register"))
-
