@@ -1,31 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<title>Login</title>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		{% load static %}
-			<link rel="stylesheet" type="text/css" href="{% static 'events/style.css' %}">
-			<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-			<link rel="stylesheet" href="https://use.typekit.net/aal8ufp.css">
-	</head>
-	<body class="Background">
-		<div class="container-fluid">
-		<h2 class="Header">Login</h2>
-		<form method="post">
-			{% csrf_token %}
-			<table border='0'>
-				{{ form.as_table }}
-			</table>
-			<button type="submit">Login</button>
-			<input type="hidden" name="next" value="{{next}}"/>
-		</form>
-{# If you have written a password_reset template, then #}
-<p>
-<a href="{% url 'signup' %}">Sign up!</a>
-<a href="{% url 'password_reset' %}">Forgot password?</a>
-<a href="{% url 'social:begin' 'google-oauth2' %}">Login with Google</a>
-</p>
-</div>
+
+<head>
+    <title>Login</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'events/style.css' %}">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.typekit.net/aal8ufp.css">
+</head>
+
+<body class="Background">
+    <div class="container-fluid">
+        <h2 class="Header">Login</h2>
+        <form method="post">
+            {% csrf_token %}
+            <table border='0'>
+                {{ form.as_table }}
+            </table>
+            <button type="submit">Login</button>
+            <input type="hidden" name="next" value="{{next}}" />
+        </form>
+        {# If you have written a password_reset template, then #}
+        <p>
+            <a href="{% url 'signup' %}">Sign up!</a>
+            <a href="{% url 'password_reset' %}">Forgot password?</a>
+            <a href="{% url 'social:begin' 'google-oauth2' %}">Login with Google</a>
+        </p>
+    </div>
 </body>
+
 </html>

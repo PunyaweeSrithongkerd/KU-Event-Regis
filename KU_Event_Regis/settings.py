@@ -10,8 +10,6 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 import os
 from decouple import config
 
-LOGIN_REDIRECT_URL = '/events/'
-LOGOUT_REDIRECT_URL = '/events/'
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -151,3 +149,9 @@ SOCIAL_AUTH_URL_NAMESPACE = 'social'
 SOCIAL_AUTH_ADMIN_USER_SEARCH_FIELDS = ['username', 'first_name', 'email']
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '406072658258-qjpl7fbstek9b9vl95guhidddoal37hp.apps.googleusercontent.com'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'jfSm0PDPELVdwUvBeLEx8NqM'
+
+LOGIN_REDIRECT_URL = '/events/'
+LOGOUT_REDIRECT_URL = '/events/'
+
+EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")

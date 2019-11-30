@@ -20,11 +20,15 @@ class Event(models.Model):
     def is_future(self):
         if self.event_date  > timezone.now().date():
             return True
+        else:
+            return False
         
     def is_soon_event(self):
         """Return True if registered events will begin with in 3 days"""
         if (self.event_date <= timezone.now().date() + datetime.timedelta(days=3)) and self.is_future():
             return True
+        else:
+            return False
 
     def day_to_event(self):
         return (self.event_date - timezone.now().date()).days
