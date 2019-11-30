@@ -1,55 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<title>Ku-Event-Regis</title>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		{% load static %}
-			<link rel="stylesheet" type="text/css" href="{% static 'events/style.css' %}">
-			<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-			<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap-theme.min.css">
-			<link rel="stylesheet" href="https://use.typekit.net/aal8ufp.css">
-	</head>
-	<body class="Background">
-		<div class="container-fluid">
-		
-			{% if user.is_authenticated %}
-				Welcome back, {{ user.username }} 
-				<a href="{% url 'logout' %}"> Logout </a>
-			{% else %}
-				<p><a href="{% url 'login' %}?next={{request.path}}"> Login </a> to register the events!.</p>
-			{% endif %}
-			
-			<h1>Soon Interesting Events!</h1>
-			<table>
-				{% if events_list %}
-					<tr>
-						<th class="Detail_font">Event</th>
-						<th class="Detail_font">Date</th>
-						<th class="Detail_font">Time</th>
-						<th class="Detail_font">Details</th>
-						<th class="Detail_font">Register</th>
-					</tr>
-					<ul>
-						{% for event in events_list %}
-							<tr>
-								<td class="Detail_font">{{ event.name }}</td>
-								<td class="Detail_font">{{ event.event_date }}</td>
-								<td class="Detail_font">{{ event.start_time }} to {{ event.end_time }}</td>
-								<td class="Detail_font"><a href="/events/{{ event.id }}/">Details</a></td>
-								{% if user in event.user.all %}
-									<td height=40 center align="center"><img width=35 height=35 src="{% static 'events/images/check.png' %}" alt="check"></td>
-								{% else %}
-									<td height=40 class="Detail_font"></td>
-								{% endif %}
-							</tr>
-						{% endfor %}
-					</ul>
-				{% else %}
-					<p class="Header">No events are available.</p>
-				{% endif %}
-			</table>
-			<a class="btn btn-primary" href="/events/registered/ ">Your Registered Event</a>
-		</div>
-	</body>
+
+<head>
+    <title>Ku-Event-Regis</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'events/style.css' %}">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.typekit.net/aal8ufp.css">
+</head>
+
+<body class="Background">
+    <div class="container-fluid">
+
+        {% if user.is_authenticated %} Welcome back, {{ user.username }}
+        <a href="{% url 'logout' %}"> Logout </a> {% else %}
+        <p><a href="{% url 'login' %}?next={{request.path}}"> Login </a> to register the events!.</p>
+        {% endif %}
+
+        <h1>Soon Interesting Events!</h1>
+        <table>
+            {% if events_list %}
+            <tr>
+                <th class="Detail_font">Event</th>
+                <th class="Detail_font">Date</th>
+                <th class="Detail_font">Time</th>
+                <th class="Detail_font">Details</th>
+                <th class="Detail_font">Register</th>
+            </tr>
+            <ul>
+                {% for event in events_list %}
+                <tr>
+                    <td class="Detail_font">{{ event.name }}</td>
+                    <td class="Detail_font">{{ event.event_date }}</td>
+                    <td class="Detail_font">{{ event.start_time }} to {{ event.end_time }}</td>
+                    <td class="Detail_font"><a href="/events/{{ event.id }}/">Details</a></td>
+                    {% if user in event.user.all %}
+                    <td height=40 center align="center"><img width=35 height=35 src="{% static 'events/images/check.png' %}" alt="check"></td>
+                    {% else %}
+                    <td height=40 class="Detail_font"></td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p class="Header">No events are available.</p>
+            {% endif %}
+        </table>
+        <a class="btn btn-primary" href="/events/registered/ ">Your Registered Event</a>
+    </div>
+</body>
+
 </html>
