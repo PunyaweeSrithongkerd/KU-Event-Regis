@@ -9,6 +9,9 @@ git:
 install:
   - pip install -r requirements.txt
 
+env: 
+  - DEBUG = True
+
 # script to run tests. Can also use make, e.g. "make test"
 script: 
   - python manage.py makemigrations
