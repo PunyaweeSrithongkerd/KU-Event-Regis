@@ -1,16 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <title>Ku-Event-Regis</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1"> {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'events/style.css' %}">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://use.typekit.net/aal8ufp.css">
-</head>
-<body class="Background">
-    <div class="container-fluid">
+{% extends "events/base.html" %}
+{% load staticfiles %} 
+{% block title %}KU Event Regis{% endblock %}
+{% block content %}
 
         {% if user.is_authenticated %} Welcome back, {{ user.username }}
         <a href="{% url 'logout' %}"> Logout </a> {% else %}
@@ -78,12 +69,13 @@
                 <td class="Detail_font"><a href="/events/{{ event.id }}/">Details</a></td>
                 <th>In {{event.how_long}} Day(s)</th>
             </tr>
-            {% endif %} {% endfor %} {% else %}
+            {% endif %} 
+            {% endfor %} 
+            {% else %}
             <h3 class="Detail_font">You have no registered event!<h3>
 	          {% endif %}
 
         </table>
         <a class="btn btn-primary" href="/events/registered/ ">Your Registered Event</a>
-      </div>
-  </body>
-</html>
+
+{% endblock %}
