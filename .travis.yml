@@ -9,6 +9,10 @@ git:
 install:
   - pip install -r requirements.txt
 
+env:
+  DEBUG = True
+  SECRET_KEY = '6a^izyf25(_w!%r+_9+gimq*w6&sc9cxrf5n@87b$d_+f^lca!'
+
 before_script:
   - python manage.py migrate
 # script to run tests. Can also use make, e.g. "make test"
