@@ -10,8 +10,6 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 import os
 from decouple import config
 
-LOGIN_REDIRECT_URL = '/events/'
-LOGOUT_REDIRECT_URL = '/events/'
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -40,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'social_django',
+    'accounts.apps.AccountsConfig',
 ]
 
 AUTHENTICATION_BACKENDS = (
@@ -47,7 +46,6 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
     # Google's Oauth Backend
     'social_core.backends.google.GoogleOAuth2',
-    'social_core.backends.facebook.FacebookOAuth2',  
  )
 
 MIDDLEWARE = [
@@ -75,6 +73,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -133,8 +132,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # Setting for Social Auth
-LOGIN_URL = '/login/'
-LOGIN_REDIRECT_URL = '/'
 SOCIAL_AUTH_STRATEGY = 'social_django.strategy.DjangoStrategy'
 SOCIAL_AUTH_STORAGE = 'social_django.models.DjangoStorage'
 SOCIAL_AUTH_PIPELINE = (
@@ -152,3 +149,9 @@ SOCIAL_AUTH_URL_NAMESPACE = 'social'
 SOCIAL_AUTH_ADMIN_USER_SEARCH_FIELDS = ['username', 'first_name', 'email']
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '406072658258-qjpl7fbstek9b9vl95guhidddoal37hp.apps.googleusercontent.com'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'jfSm0PDPELVdwUvBeLEx8NqM'
+
+LOGIN_REDIRECT_URL = '/events/'
+LOGOUT_REDIRECT_URL = '/events/'
+
+EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
