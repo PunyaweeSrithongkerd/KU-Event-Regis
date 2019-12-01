@@ -1,5 +1,7 @@
 # KU-Event-Regis
 
+[![Build Status](https://travis-ci.com/PunyaweeSrithongkerd/KU-Event-Regis.png?branch=master)](https://travis-ci.com/PunyaweeSrithongkerd/KU-Event-Regis)
+
 ## Team Member
 
 | Name                 |  Github                                                         |
