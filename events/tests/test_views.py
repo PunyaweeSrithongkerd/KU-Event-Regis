@@ -24,7 +24,7 @@ class EventIndexViewTests(TestCase):
         response = self.client.get(reverse('events:index'))
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "No events are available.")
-        self.assertQuerysetEqual(response.context['latest_Event_list'], [])
+        self.assertQuerysetEqual(response.context['events_list'], [])
 
     def test_past_Event(self):
         """
@@ -34,8 +34,8 @@ class EventIndexViewTests(TestCase):
         create_Event(Event_text="Past Event.", days=-30)
         response = self.client.get(reverse('events:index'))
         self.assertQuerysetEqual(
-            response.context['latest_Event_list'],
-            ['<Event: Past Event.>']
+            response.context['events_list'],
+            []
         )
 
     def test_future_Event(self):
@@ -45,8 +45,7 @@ class EventIndexViewTests(TestCase):
         """
         create_Event(Event_text="Future Event.", days=30)
         response = self.client.get(reverse('events:index'))
-        self.assertContains(response, "No events are available.")
-        self.assertQuerysetEqual(response.context['latest_Event_list'], [])
+        self.assertQuerysetEqual(response.context['events_list'], ['<Event: Future Event.>'])
 
     def test_future_Event_and_past_Event(self):
         """
@@ -57,8 +56,8 @@ class EventIndexViewTests(TestCase):
         create_Event(Event_text="Future Event.", days=30)
         response = self.client.get(reverse('events:index'))
         self.assertQuerysetEqual(
-            response.context['latest_Event_list'],
-            ['<Event: Past Event.>']
+            response.context['events_list'],
+            ['<Event: Future Event.>']
         )
 
     def test_two_past_Events(self):
@@ -69,8 +68,8 @@ class EventIndexViewTests(TestCase):
         create_Event(Event_text="Past Event 2.", days=-5)
         response = self.client.get(reverse('events:index'))
         self.assertQuerysetEqual(
-            response.context['latest_Event_list'],
-            ['<Event: Past Event 2.>', '<Event: Past Event 1.>']
+            response.context['events_list'],
+            []
         )
 
 
@@ -81,9 +80,9 @@ class EventDetailViewTests(TestCase):
         returns a 404 not found.
         """
         future_Event = create_Event(Event_text='Future Event.', days=5)
-        url = reverse('events:detail', args=(future_Event.id,))
+        url = reverse('events:details', args=(future_Event.id,))
         response = self.client.get(url)
-        self.assertEqual(response.status_code, 404)
+        self.assertEqual(response.status_code, 200)
 
     def test_past_Event(self):
         """
@@ -91,6 +90,6 @@ class EventDetailViewTests(TestCase):
         displays the Event's text.
         """
         past_Event = create_Event(Event_text='Past Event.', days=-5)
-        url = reverse('events:detail', args=(past_Event.id,))
+        url = reverse('events:details', args=(past_Event.id,))
         response = self.client.get(url)
-        self.assertContains(response, past_Event.Event_text)
+        self.assertContains(response, past_Event.description)
