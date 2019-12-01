@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.typekit.net/aal8ufp.css">
 </head>
-
 <body class="Background">
     <div class="container-fluid">
 
@@ -24,8 +23,8 @@
             <tr>
                 <th class="Detail_font">Event</th>
                 <th class="Detail_font">Date</th>
-                <th class="Detail_font">Time</th>
                 <th class="Detail_font">Details</th>
+                <th class="Detail_font">Joined</th>
                 <th class="Detail_font">Register</th>
             </tr>
             <ul>
@@ -33,8 +32,12 @@
                 <tr>
                     <td class="Detail_font">{{ event.name }}</td>
                     <td class="Detail_font">{{ event.event_date }}</td>
-                    <td class="Detail_font">{{ event.start_time }} to {{ event.end_time }}</td>
                     <td class="Detail_font"><a href="/events/{{ event.id }}/">Details</a></td>
+                    {% if event.max_regis is None %}
+                    <td class="Detail_font" >{{event.user.all.count}}</td>
+                    {% else %}
+                    <td class="Detail_font">{{event.user.all.count}} / {{event.max_regis}}</td>
+                    {% endif %}
                     {% if user in event.user.all %}
                     <td height=40 center align="center"><img width=35 height=35 src="{% static 'events/images/check.png' %}" alt="check"></td>
                     {% else %}
@@ -42,13 +45,25 @@
                     {% endif %}
                 </tr>
                 {% endfor %}
-            </ul>
+             </ul>
             {% else %}
             <p class="Header">No events are available.</p>
             {% endif %}
         </table>
+		    </br>
         <h2>Reminder</h2>
-
+        {% for event in user.event_set.all %} 
+			    {% if event.is_soon_event %}
+			    <h6>{{event.name}} in {{event.day_to_event}} Day(s)</h6>
+			    </br>
+			    {% endif %}
+		     {% endfor %}
+		    </br>
+		    <h2>Popular Event!</h2>
+		    {% for event in most_popular_event %}
+			    <h6>{{event.name}} has {{event.user.all.count}} people(s) want to joined!</h6>
+		    {% endfor %}
+        <h2>Reminder</h2>
         <table>
             {% if user.event_set.all %}
             <tr>
@@ -65,11 +80,10 @@
             </tr>
             {% endif %} {% endfor %} {% else %}
             <h3 class="Detail_font">You have no registered event!<h3>
-	{% endif %}
+	          {% endif %}
 
-</table>
+        </table>
         <a class="btn btn-primary" href="/events/registered/ ">Your Registered Event</a>
-    </div>
-</body>
-
+      </div>
+  </body>
 </html>
