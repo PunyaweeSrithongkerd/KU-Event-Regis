@@ -1,6 +1,6 @@
 language: python
 
-python: "3.7"
+python: "3.6"
 
 # don't clone more than necessary
 git:
@@ -11,6 +11,6 @@ install:
 
 # script to run tests. Can also use make, e.g. "make test"
 script: 
-  - py manage.py makemigrations
-  - py manage.py migrate
-  - py manage.py test events/tests/
+  - python manage.py makemigrations
+  - python manage.py
+  - python manage.py test events/tests/
