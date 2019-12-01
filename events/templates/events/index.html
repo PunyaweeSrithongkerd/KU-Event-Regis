@@ -55,7 +55,7 @@
         <h2>Reminder</h2>
         {% for event in user.event_set.all %} 
 			{% if event.is_soon_event %}
-			{{event.name}} in {{event.day_to_event}} Day(s)
+			<h6>{{event.name}} in {{event.day_to_event}} Day(s)</h6>
 			</br>
 			{% endif %}
 		{% endfor %}
