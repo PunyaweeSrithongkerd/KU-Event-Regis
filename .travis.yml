@@ -11,6 +11,7 @@ install:
 
 env: 
   - DEBUG = True
+  - SECRET_KEY = '6a^izyf25(_w!%r+_9+gimq*w6&sc9cxrf5n@87b$d_+f^lca!'
 
 # script to run tests. Can also use make, e.g. "make test"
 script: 
