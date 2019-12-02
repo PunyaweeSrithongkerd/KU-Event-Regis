@@ -24,7 +24,7 @@
             </tr>
         </thead>
 				{% for event in user.event_set.all %} 
-				{% if event.is_future %}
+				{% if event.is_today_or_future %}
         <tr>
             <td class="Detail_font">{{event.name}}</td>
             <td class="Detail_font">{{event.event_date}}</td>
@@ -44,5 +44,5 @@
 	      {% endif %}
       </table>
       <a class="btn btn-primary" href="/events/ ">Back to home</a>
-  	</body>
+</body>
 </html>

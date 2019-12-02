@@ -8,6 +8,7 @@ from django.template.response import TemplateResponse
 from .models import Event
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.db.models import Count
 
 class IndexView(generic.ListView):
     model = Event
@@ -18,7 +19,12 @@ class IndexView(generic.ListView):
         """
         Return all upcoming events in the future .
         """
-        return Event.objects.filter(event_date__gte=timezone.now()).order_by('event_date')[:10]
+        return Event.objects.filter(event_date__gt=timezone.now()).order_by('event_date')[:10]
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(IndexView, self).get_context_data(*args, **kwargs)
+        context['most_popular_event'] = Event.objects.annotate(user_count=Count("user")).order_by("-user_count")[:1]
+        return context
 
 class DetailView(generic.DetailView):
     model = Event
