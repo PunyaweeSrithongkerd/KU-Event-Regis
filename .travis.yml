@@ -15,6 +15,7 @@ env:
 
 # script to run tests. Can also use make, e.g. "make test"
 script: 
-  - python manage.py makemigrations
-  - python manage.py
-  - python manage.py test events/tests/
+  - coverage run manage.py test events/tests
+
+after_success:
+  - codecov
