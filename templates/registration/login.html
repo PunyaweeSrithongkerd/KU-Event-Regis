@@ -1,17 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <title>Login</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1"> {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'events/style.css' %}">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://use.typekit.net/aal8ufp.css">
-</head>
-
-<body class="Background">
-    <div class="container-fluid">
+{% extends "events/base.html" %}
+{% load staticfiles %} 
+{% block title %}Login{% endblock %}
+{% block content %}
         <h2 class="Header">Login</h2>
         <form method="post">
             {% csrf_token %}
@@ -30,3 +20,4 @@
     </div>
 </body>
 </html>
+{% endblock %}
