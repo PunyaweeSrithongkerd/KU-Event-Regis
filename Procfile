@@ -1,0 +1,1 @@
+web: gunicorn ku-event-regis.wsgi --log-file -
