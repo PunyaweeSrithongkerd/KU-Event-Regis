@@ -9,9 +9,9 @@
         {% endif %}
 
         <h1>Soon Interesting Events!</h1>
-        <table>
+        <table class="table table-bordered">
             {% if events_list %}
-            <tr>
+            <tr class="bg-success">
                 <th class="Detail_font">Event</th>
                 <th class="Detail_font">Date</th>
                 <th class="Detail_font">Details</th>
@@ -55,9 +55,9 @@
 			    <h6>{{event.name}} has {{event.user.all.count}} people(s) want to joined!</h6>
 		    {% endfor %}
         <h2>Reminder</h2>
-        <table>
+        <table class="table table-bordered">
             {% if user.event_set.all %}
-            <tr>
+            <tr class="bg-success">
                 <th class="Detail_font">Event</th>
                 <th></th>
                 <th></th>
