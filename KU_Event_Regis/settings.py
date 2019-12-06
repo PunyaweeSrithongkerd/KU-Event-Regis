@@ -132,6 +132,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
+
+STATICFILES_DIRS = (
+    (os.path.join(BASE_DIR, 'static')),
+)
+
 # Setting for Social Auth
 SOCIAL_AUTH_STRATEGY = 'social_django.strategy.DjangoStrategy'
 SOCIAL_AUTH_STORAGE = 'social_django.models.DjangoStorage'
@@ -156,4 +162,4 @@ LOGOUT_REDIRECT_URL = '/events/'
 
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
-django_heroku.settings(locals())
+django_heroku.settings(locals(), test_runner=False)
