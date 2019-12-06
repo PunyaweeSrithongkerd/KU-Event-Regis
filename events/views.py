@@ -73,7 +73,7 @@ def regis(request, pk):
         logger = logging.getLogger()
         logger.setLevel(logging.INFO)
         print("Logging to ", logger)
-        logger.info(f"UserID: {user.id} register event")
+        logger.info(f"UserID: {user.id} register {regis_event.name} event")
         #log_test(logger)
 
     return redirect(reverse("events:register"))
@@ -86,5 +86,11 @@ def unregis(request, pk):
     
     regis_event.user.remove(user)
     regis_event.save()
+
+    configure()
+    logger = logging.getLogger()
+    logger.setLevel(logging.INFO)
+    print("Logging to ", logger)
+    logger.info(f"UserID: {user.id} unregister {regis_event.name} event")
 
     return redirect(reverse("events:register"))

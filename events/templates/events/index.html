@@ -20,6 +20,7 @@
             </tr>
             <ul>
                 {% for event in events_list %}
+				{% if event.user.all.count != event.max_regis %}
                 <tr>
                     <td class="Detail_font">{{ event.name }}</td>
                     <td class="Detail_font">{{ event.event_date }}</td>
@@ -35,6 +36,7 @@
                     <td height=40 class="Detail_font"></td>
                     {% endif %}
                 </tr>
+				{% endif %}
                 {% endfor %}
              </ul>
             {% else %}
