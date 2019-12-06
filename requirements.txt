@@ -6,3 +6,4 @@ coverage
 codecov
 gunicorn
 django-heroku
+psycopg2==2.4.5
