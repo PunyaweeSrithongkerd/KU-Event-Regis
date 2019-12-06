@@ -20,6 +20,7 @@
             </tr>
             <ul>
                 {% for event in events_list %}
+				{% if event.user.all.count != event.max_regis %}
                 <tr>
                     <td class="Detail_font">{{ event.name }}</td>
                     <td class="Detail_font">{{ event.event_date }}</td>
@@ -35,13 +36,14 @@
                     <td height=40 class="Detail_font"></td>
                     {% endif %}
                 </tr>
+				{% endif %}
                 {% endfor %}
              </ul>
             {% else %}
             <p class="Header">No events are available.</p>
             {% endif %}
         </table>
-		    </br>
+		</br>
         <h2>Reminder</h2>
         {% for event in user.event_set.all %} 
 			    {% if event.is_soon_event %}
@@ -49,33 +51,11 @@
 			    </br>
 			    {% endif %}
 		     {% endfor %}
-		    </br>
-		    <h2>Popular Event!</h2>
+		    </br> 
+		<h2>Popular Event!</h2>
 		    {% for event in most_popular_event %}
 			    <h6>{{event.name}} has {{event.user.all.count}} people(s) want to joined!</h6>
 		    {% endfor %}
-        <h2>Reminder</h2>
-        <table class="table table-bordered">
-            {% if user.event_set.all %}
-            <tr class="bg-success">
-                <th class="Detail_font">Event</th>
-                <th></th>
-                <th></th>
-            </tr>
-            {% for event in user.event_set.all %} 
-            {% if event.is_soon_event %}
-            <tr>
-                <td class="Detail_font">{{event.name}}</td>
-                <td class="Detail_font"><a href="/events/{{ event.id }}/">Details</a></td>
-                <th>In {{event.how_long}} Day(s)</th>
-            </tr>
-            {% endif %} 
-            {% endfor %} 
-            {% else %}
-            <h3 class="Detail_font">You have no registered event!<h3>
-	          {% endif %}
-
-        </table>
         <a class="btn btn-primary" href="/events/registered/ ">Your Registered Event</a>
 
 {% endblock %}

@@ -10,6 +10,28 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.db.models import Count
 
+import logging
+
+def configure():
+    """Configure loggers and log handlers"""
+    # write all messages to a file.
+    # For a real app, use a configurable absolute path to log file.
+    filehandler = logging.FileHandler("log.log")
+    filehandler.setLevel(logging.DEBUG)
+    formatter = logging.Formatter(
+             '%(asctime)s %(name)s %(levelname)s: %(message)s' )
+    filehandler.setFormatter(formatter)
+    # add handler to root logger
+    root = logging.getLogger()
+    root.setLevel( logging.NOTSET )
+    root.addHandler(filehandler)
+    # Define a console handler for messages of level WARNING or higher
+    console_handler = logging.StreamHandler()
+    console_handler.setLevel(logging.WARNING)
+    formatter = logging.Formatter(fmt="%(levelname)-8s %(name)s: %(message)s")
+    console_handler.setFormatter(formatter)
+    root.addHandler( console_handler )
+    
 class IndexView(generic.ListView):
     model = Event
     context_object_name = 'events_list'
@@ -46,6 +68,13 @@ def regis(request, pk):
     else:
         regis_event.user.add(user)
         regis_event.save()
+        
+        configure()
+        logger = logging.getLogger()
+        logger.setLevel(logging.INFO)
+        print("Logging to ", logger)
+        logger.info(f"UserID: {user.id} register {regis_event.name} event")
+        #log_test(logger)
 
     return redirect(reverse("events:register"))
 
@@ -57,5 +86,11 @@ def unregis(request, pk):
     
     regis_event.user.remove(user)
     regis_event.save()
+
+    configure()
+    logger = logging.getLogger()
+    logger.setLevel(logging.INFO)
+    print("Logging to ", logger)
+    logger.info(f"UserID: {user.id} unregister {regis_event.name} event")
 
     return redirect(reverse("events:register"))
