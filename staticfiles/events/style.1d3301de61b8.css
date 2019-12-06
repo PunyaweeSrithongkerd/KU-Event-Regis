@@ -1,0 +1,29 @@
+li a {
+    color: blue;
+}
+
+.Background {
+    background-image: url("images/green-corner-fading-background.38437fc93db3.jpg") ;
+    background-size: no-repeat 100%;
+}
+
+.Header {
+    font-family: myriad-pro, sans-serif;
+    font-style: normal;
+    font-weight: 700;
+}
+
+table, th, td {
+    border-collapse: collapse;
+    border: 1px solid black;
+    padding-left:  4px;
+    padding-right: 4px;
+}
+
+.Detail_font{
+    font-family: myriad-pro, sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24 px;
+    color: black;
+}
