@@ -1,5 +1,8 @@
 # KU-Event-Regis
 
+[![Build Status](https://codecov.io/gh/codecov/example-python/branch/master/graph/badge.svg)](https://codecov.io/gh/PunyaweeSrithongkerd/KU-Event-Regis)
+[![Build Status](https://travis-ci.com/PunyaweeSrithongkerd/KU-Event-Regis.png?branch=master)](https://travis-ci.com/PunyaweeSrithongkerd/KU-Event-Regis)
+
 ## Team Member
 
 | Name                 |  Github                                                         |

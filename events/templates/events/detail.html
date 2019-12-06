@@ -12,12 +12,23 @@
 <body class="Background">
     <div class="container-fluid">
         <h1 class="Header">"{{ event }}" Details</h1>
-        <h2 class="Detail_font">Event Date: {{event.event_date}}</h2>
-        <h2 class="Detail_font">About this event: {{event.description}}</h2>
-        <h2 class="Detail_font">Location: {{event.location}}</h2>
-        <h2 class="Detail_font">Time: {{event.start_time}} to {{event.end_time}}</h2>
-        <h2 class="Detail_font">Qualification: {{event.qualification}}</h2>
-        <h2 class="Detail_font">{{event.user.all.count}} Peoples want to join this event!</h2> {% if user not in event.user.all %}
+		<h2 class="Detail_font">Event Date: {{event.event_date}}</h2> 
+		{% if event.description is not None %}
+		<h2 class="Detail_font">About this event: {{event.description}}</h2> 
+		{% endif %} 
+		{% if event.location is not None %}
+		<h2 class="Detail_font">Location: {{event.location}}</h2> 
+		{% endif %}
+		<h2 class="Detail_font">Time: {{event.start_time}} to {{event.end_time}}</h2> 
+		{% if event.qualification is not None %}
+		<h2 class="Detail_font">Qualification: {{event.qualification}}</h2> 
+		{% endif %} 
+		{% if event.max_regis is not None %}
+		<h2 class="Detail_font">{{event.user.all.count}} / {{event.max_regis}} Peoples want to join this event!</h2> 
+		{% else %}
+		<h2 class="Detail_font">{{event.user.all.count}} Peoples want to join this event!</h2> 
+		{% endif %} 
+		{% if user not in event.user.all %}
         <form action="{% url 'events:regis' event.id %}" method="post">
             {% csrf_token %}
             <button type='submit' name='UserID' value={{user.id}}>Register</button>
