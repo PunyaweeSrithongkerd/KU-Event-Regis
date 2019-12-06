@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 from decouple import config
+import django_heroku 
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -155,3 +156,4 @@ LOGOUT_REDIRECT_URL = '/events/'
 
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
+django_heroku.settings(locals())
