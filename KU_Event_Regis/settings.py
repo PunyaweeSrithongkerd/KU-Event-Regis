@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY' , default='secret')
+SECRET_KEY = config('SECRET_KEY', default='secret')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
@@ -153,8 +153,8 @@ SOCIAL_AUTH_PIPELINE = (
 )
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
 SOCIAL_AUTH_ADMIN_USER_SEARCH_FIELDS = ['username', 'first_name', 'email']
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '406072658258-qjpl7fbstek9b9vl95guhidddoal37hp.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'jfSm0PDPELVdwUvBeLEx8NqM'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = config('GOOGLE_KEY', default='secret')
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config('GOOGLE_SECRET', default='secret')
 
 LOGIN_REDIRECT_URL = '/events/'
 LOGOUT_REDIRECT_URL = '/events/'
