@@ -20,10 +20,12 @@ class Event(models.Model):
     user = models.ManyToManyField(User, blank=True)
 
     def __str__(self):
+        """Return event name"""
         return self.name
 
-    def is_today_or_future(self):
-        if self.event_date >= TODAY:
+    def is_future(self):
+        """Return True if event is in future and return False if not"""
+        if self.event_date > TODAY:
             return True
         else:
             return False
@@ -36,4 +38,5 @@ class Event(models.Model):
             return False
 
     def day_to_event(self):
+        """Return day(s) that event will begin"""
         return (self.event_date - TODAY).days

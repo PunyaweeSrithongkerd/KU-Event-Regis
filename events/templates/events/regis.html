@@ -1,16 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <title>Ku-Event-Regis</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1"> {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'events/style.css' %}">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://use.typekit.net/aal8ufp.css">
-</head>
-
-<body class="Background">
+{% extends "events/base.html" %}
+{% load staticfiles %} 
+{% block title %}KU Event Regis{% endblock %}
+{% block content %}
     <h1 class="Header">Your Registered Events!</h1>
     <table class="table">
         <thead class="thead-dark">
@@ -44,5 +35,6 @@
 	      {% endif %}
       </table>
       <a class="btn btn-primary" href="/events/ ">Back to home</a>
-</body>
+  </body>
 </html>
+{% endblock %}

@@ -4,6 +4,7 @@ from django.test import TestCase
 from events.models import Event
 from django.utils import timezone
 
+
 class TestModelEvent(TestCase):
     @classmethod
     def setUpTestData(cls):

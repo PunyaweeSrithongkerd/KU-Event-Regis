@@ -9,9 +9,9 @@
         {% endif %}
 
         <h1>Soon Interesting Events!</h1>
-        <table>
+        <table class="table table-bordered">
             {% if events_list %}
-            <tr>
+            <tr class="bg-success">
                 <th class="Detail_font">Event</th>
                 <th class="Detail_font">Date</th>
                 <th class="Detail_font">Details</th>
@@ -20,8 +20,7 @@
             </tr>
             <ul>
                 {% for event in events_list %}
-				{% if event.user.all.count == event.max_regis %}
-				{% else %}
+				{% if event.user.all.count != event.max_regis %}
                 <tr>
                     <td class="Detail_font">{{ event.name }}</td>
                     <td class="Detail_font">{{ event.event_date }}</td>
@@ -62,6 +61,3 @@
 		{% endfor %}
         <a class="btn btn-primary" href="/events/registered/ ">Your Registered Event</a>
 {% endblock %}
-</div>
-</body>
-</html>

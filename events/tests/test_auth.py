@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 
 def create_event(name, days):
     time = timezone.now() + datetime.timedelta(days=days)
-    event = Event.objects.create(name= name, event_date=time)
+    event = Event.objects.create(name=name, event_date=time)
     return event
 
 
@@ -20,7 +20,7 @@ class AuthTest(TestCase):
         self.e1 = create_event("A First Question", days=-1)
         self.username = "testuser"
         self.userpass = "123$*HCfjdksla"
-        self.user = User.objects.create_user(self.username,password=self.userpass)
+        self.user = User.objects.create_user(self.username, password=self.userpass)
 
     def test_can_view_event_detail(self):
         """Test that an unauthenticated user can view event detail"""
@@ -36,7 +36,7 @@ class AuthTest(TestCase):
         """
         login_url = reverse('login')
         response = self.client.post(login_url,
-                    {'username':self.user.username, 'password':self.userpass})
+                                    {'username': self.user.username, 'password': self.userpass})
         # This is a weak test: if login succeeds he is redirected.
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, reverse('events:index'))
@@ -53,7 +53,6 @@ class AuthTest(TestCase):
         except Exception:
             pass
         register_url = reverse('events:regis', args=[self.e1.id])
-        ##choice_id = self.q1.choice_set.first().id
         response = self.client.post(register_url, {'event': self.e1.id})
         self.assertEqual(response.status_code, 302)
         # comparing redirect response to reverse('login') fails
@@ -61,21 +60,19 @@ class AuthTest(TestCase):
         expect_url = reverse('login') + '?next=' + register_url
         self.assertRedirects(response, expect_url)
 
-        # Now check that he can vote after login
-        response = self.client.post( reverse('login'),
-                    {'username':self.user.username, 'password':self.userpass})
-        # submit a vote
-        response = self.client.post( register_url, {'event':str(self.e1.id)})
+        response = self.client.post(reverse('login'),
+                                    {'username': self.user.username, 'password': self.userpass})
+
+        response = self.client.post(register_url, {'event': str(self.e1.id)})
         self.assertEqual(response.status_code, 302)
-        # This time the redirect should be to poll results
         expect_url = reverse('events:details', args=(self.e1.id,))
         self.assertRedirects(response, expect_url)
         # retrograde manual confirmation of voting
         print("After registered")
         for event in self.user.event_set.all():
-            print(event, "regis:", event.regis, args=(self.e1.id,))
-        # vote again
-        response = self.client.post( register_url, {'event':'2'})
+            print(event, "regis:", event.regis)
+
+        response = self.client.post(register_url, {'event': '2'})
         self.assertEqual(response.status_code, 302)
         print("After second registered")
         for event in self.user.event_set.all():

@@ -5,6 +5,7 @@ from django.utils import timezone
 from django.urls import reverse
 
 from events.models import Event
+from events.views import configure
 
 
 def create_Event(Event_text, days):
