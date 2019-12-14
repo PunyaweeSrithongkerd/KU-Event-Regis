@@ -94,4 +94,3 @@ class EventDetailViewTests(TestCase):
         url = reverse('events:details', args=(past_Event.id,))
         response = self.client.get(url)
         self.assertContains(response, past_Event.description)
-        
