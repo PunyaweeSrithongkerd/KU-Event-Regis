@@ -23,7 +23,7 @@ if os.path.isfile(dotenv_file):
     dotenv.load_dotenv(dotenv_file)
 
 # load database from the DATABASE_URL environment variable
-DATABASES = {'default': dj_database_url.config(conn_max_age=600)}
+# DATABASES = {'default': dj_database_url.config(conn_max_age=600)}
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
@@ -141,6 +141,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))\
+    
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
 
 STATICFILES_DIRS = (
@@ -177,5 +179,10 @@ EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-django_heroku.settings(locals(), test_runner=False)
-del DATABASES['default']['OPTIONS']['sslmode']
+if 'HEROKU' in os.environ:
+    DATABASES = {}
+    DATABASES['default'] = dj_database_url.config(conn_max_age=600)
+    django_heroku.settings(locals())
+    del DATABASES['default']['OPTIONS']['sslmode']
+else:
+    DATABASES = {'default': dj_database_url.config(default='sqlite:///db.sqlite3')}
