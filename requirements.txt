@@ -9,3 +9,4 @@ django-heroku
 psycopg2==2.7.4
 python-dotenv==0.10.3
 whitenoise
+Pillow
