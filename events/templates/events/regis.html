@@ -15,7 +15,7 @@
             </tr>
         </thead>
 				{% for event in user.event_set.all %} 
-				{% if event.is_future %}
+				{% if event.is_today_or_future %}
         <tr>
             <td class="Detail_font">{{event.name}}</td>
             <td class="Detail_font">{{event.event_date}}</td>
@@ -34,7 +34,7 @@
         <h3 class="Detail_font">You have no registered event!<h3>
 	      {% endif %}
       </table>
-      <a class="btn btn-primary" href="/events/ ">Back to home</a>
+      <a class="btn btn-primary" name="button_to_home" href="/events/ ">Back to home</a>
   </body>
 </html>
 {% endblock %}

@@ -6,11 +6,14 @@
 		<h2 class="Detail_font">Event Date: {{event.event_date}}</h2> 
 		{% if event.description is not None %}
 		<h2 class="Detail_font">About this event: {{event.description}}</h2> 
+		{% endif %}
+		{% if event.image %}
+		<img src="{{ event.image.url }}">
 		{% endif %} 
 		{% if event.location is not None %}
 		<h2 class="Detail_font">Location: {{event.location}}</h2> 
 		{% endif %}
-		<h2 class="Detail_font">Time: {{event.start_time}} to {{event.end_time}}</h2> 
+		<h2 class="Detail_font">Time: {{event.start_time}} to {{event.end_time}}</h2>
 		{% if event.qualification is not None %}
 		<h2 class="Detail_font">Qualification: {{event.qualification}}</h2> 
 		{% endif %} 
@@ -28,5 +31,4 @@
     </div>
     <a class="btn btn-primary" href="/events/ ">Back to home</a>
 </body>
-
 {% endblock %}

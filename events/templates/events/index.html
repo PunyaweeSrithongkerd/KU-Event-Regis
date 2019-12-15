@@ -2,12 +2,6 @@
 {% load staticfiles %} 
 {% block title %}KU Event Regis{% endblock %}
 {% block content %}
-
-        {% if user.is_authenticated %} Welcome back, {{ user.username }}
-        <a href="{% url 'logout' %}"> Logout </a> {% else %}
-        <p><a href="{% url 'login' %}?next={{request.path}}"> Login </a> to register the events!.</p>
-        {% endif %}
-
         <h1>Soon Interesting Events!</h1>
         <table class="table table-bordered">
             {% if events_list %}
@@ -22,18 +16,18 @@
                 {% for event in events_list %}
 				{% if event.user.all.count != event.max_regis %}
                 <tr>
-                    <td class="Detail_font">{{ event.name }}</td>
-                    <td class="Detail_font">{{ event.event_date }}</td>
-                    <td class="Detail_font"><a href="/events/{{ event.id }}/">Details</a></td>
+                    <td class="table-success">{{ event.name }}</td>
+                    <td class="table-success">{{ event.event_date }}</td>
+                    <td class="table-success"><a href="/events/{{ event.id }}/">Details</a></td>
                     {% if event.max_regis is None %}
-                    <td class="Detail_font" >{{event.user.all.count}}</td>
+                    <td class="table-success" >{{event.user.all.count}}</td>
                     {% else %}
-                    <td class="Detail_font">{{event.user.all.count}} / {{event.max_regis}}</td>
+                    <td class="table-success">{{event.user.all.count}} / {{event.max_regis}}</td>
                     {% endif %}
                     {% if user in event.user.all %}
-                    <td height=40 center align="center"><img width=35 height=35 src="{% static 'events/images/check.png' %}" alt="check"></td>
+                    <td height=40 class="table-success" center align="center"><img width=35 height=35 src="{% static 'events/images/check.png' %}" alt="check"></td>
                     {% else %}
-                    <td height=40 class="Detail_font"></td>
+                    <td height=40 class="table-success"></td>
                     {% endif %}
                 </tr>
 				{% endif %}
@@ -44,18 +38,24 @@
             {% endif %}
         </table>
 		</br>
-        <h2>Reminder</h2>
-        {% for event in user.event_set.all %} 
-			    {% if event.is_soon_event %}
-			    <h6>{{event.name}} in {{event.day_to_event}} Day(s)</h6>
-			    </br>
-			    {% endif %}
-		     {% endfor %}
-		    </br> 
+		<div class="alert alert-info" role="alert">
+		<h2>Reminder</h2>
+        {% for event in user.event_set.all %}
+		{% if event.is_soon_event %}
+		{% if event.day_to_event == 0 %}
+		<h6>{{event.name}} Today!</h6>
+		{% else %}
+		<h6>{{event.name}} in {{event.day_to_event}} Day(s)</h6>
+		{% endif %}
+		{% endif %}
+		{% endfor %}
+		</div>
+        
+		<div class="alert alert-warning" role="alert">
 		<h2>Popular Event!</h2>
-		    {% for event in most_popular_event %}
-			    <h6>{{event.name}} has {{event.user.all.count}} people(s) want to joined!</h6>
-		    {% endfor %}
-        <a class="btn btn-primary" href="/events/registered/ ">Your Registered Event</a>
-
+		{% for event in most_popular_event %}
+		<h6>{{event.name}} has {{event.user.all.count}} people(s) want to joined!</h6>
+		{% endfor %}
+		</div>
+        <a class="btn btn-primary" name="button_to_regis" href="/events/registered/ ">Your Registered Event</a>
 {% endblock %}

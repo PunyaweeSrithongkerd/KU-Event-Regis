@@ -80,7 +80,7 @@ class TestModelEvent(TestCase):
         field_label = event._meta.get_field('max_regis').verbose_name
         self.assertEquals(field_label, 'maximum participant')
 
-    def test_is_future(self):
+    def test_is_today_or_future(self):
         event = Event.objects.get(id=1)
         event.event_date = timezone.now().date() + datetime.timedelta(days=1)
-        self.assertTrue(event.is_future)
+        self.assertTrue(event.is_today_or_future)
