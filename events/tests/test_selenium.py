@@ -5,8 +5,9 @@ import requests
 import unittest
 import time
 
-class test_redirect(unittest.TestCase):
-    
+
+class TestRedirect(unittest.TestCase):
+
     def setUp(self):
         self.browser = webdriver.Chrome('tests/chromedriver.exe')
 
@@ -21,7 +22,8 @@ class test_redirect(unittest.TestCase):
         self.assertEquals(
             self.browser.current_url,
             regis_url
-            )
+        )
+
     def button_redirect_to_login(self):
         self.browser.get("http://localhost:8000/")
 
@@ -30,8 +32,8 @@ class test_redirect(unittest.TestCase):
         self.assertEquals(
             self.browser.current_url,
             login_url
-            )
-        
+        )
+
     def button_back_to_home(self):
         self.browser.get("http://localhost:8000/registered")
 
@@ -40,4 +42,4 @@ class test_redirect(unittest.TestCase):
         self.assertEquals(
             self.browser.current_url,
             home_url
-            )
+        )
