@@ -55,6 +55,12 @@ To enter site
 
 `http://127.0.0.1:8000/events/`
 
+## What we use in this project?
+
+- github
+- heroku
+- google cloud sever
+
 ## Offical website
 
 [Heroku project](https://ku-event-regis.herokuapp.com/events/ "Heroku project")
