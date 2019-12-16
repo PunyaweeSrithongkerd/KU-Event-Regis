@@ -25,10 +25,10 @@
 		{% if user not in event.user.all %}
         <form action="{% url 'events:regis' event.id %}" method="post">
             {% csrf_token %}
-            <button type='submit' name='UserID' value={{user.id}}>Register</button>
+            <button style="margin:5px" class="btn btn-primary" type='submit' name='UserID' value={{user.id}}>Register</button>
         </form>
         {% endif %}
     </div>
-    <a class="btn btn-primary" href="/events/ ">Back to home</a>
+    <a style="margin:5px" class="btn btn-primary" href="/events/ ">Back to home</a>
 </body>
 {% endblock %}
