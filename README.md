@@ -15,6 +15,10 @@
 
 An application that has a list of the upcoming events at Kasetsart University to help the user to choose and sign-up for events easier. The event list provides a location, date(s), durations and description for each event. This application can be used by anyone at Kasetsart University and optionally by outsiders if the event allows outside participation.
 
+## Offical website
+
+[Heroku project](https://ku-event-regis.herokuapp.com/events/ "Heroku project")
+
 ## Project Documents
 
 ### Iteration Plans
@@ -31,7 +35,7 @@ An application that has a list of the upcoming events at Kasetsart University to
 
 [Code Reviwe Checklist](https://docs.google.com/document/d/1pRlqTeCQEq9T0g3NPf8yt26aUKCSKC3rqEyI3L4xy_I/edit?usp=sharing "Code Reviwe Checklist")
 
-[Project Propasal](https://docs.google.com/document/d/19xCopZf3TQyQaAabWN5D3fu3sOZGI43x2DwZauKSLwo/edit?usp=sharing "Project Propasal")
+[Project Proposal](https://docs.google.com/document/d/19xCopZf3TQyQaAabWN5D3fu3sOZGI43x2DwZauKSLwo/edit?usp=sharing "Project Proposal")
 
 ### Setup
 
@@ -55,12 +59,8 @@ To enter site
 
 `http://127.0.0.1:8000/events/`
 
-## What we use in this project?
+## What we use in this project
 
-- github
+- django
 - heroku
-- google cloud sever
-
-## Offical website
-
-[Heroku project](https://ku-event-regis.herokuapp.com/events/ "Heroku project")
+- google cloud server
