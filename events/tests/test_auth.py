@@ -67,7 +67,6 @@ class AuthTest(TestCase):
         self.assertEqual(response.status_code, 302)
         expect_url = reverse('events:details', args=(self.e1.id,))
         self.assertRedirects(response, expect_url)
-        # retrograde manual confirmation of voting
         print("After registered")
         for event in self.user.event_set.all():
             print(event, "regis:", event.regis)
