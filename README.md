@@ -54,3 +54,7 @@ run this command
 To enter site
 
 `http://127.0.0.1:8000/events/`
+
+## Offical website
+
+[Heroku project](https://ku-event-regis.herokuapp.com/events/ "Heroku project")
